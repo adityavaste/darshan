@@ -1,4 +1,5 @@
 // app/layout.tsx
+'use client';
 import "./globals.css";
 import { AudioPlayerProvider } from "@/context/AudioPlayerContext";
 import RadioPlayerDock from "@/components/darshan/RadioPlayerDock";

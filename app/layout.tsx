@@ -11,6 +11,7 @@ import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import TopBar from "@/components/Top-bar";
 import "./globals.css";
 import InstallAppBanner from "@/components/InstallAppBanner";
+import { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,12 @@ export const metadata: Metadata = {
     apple: "/icon-192x192.png",
   },
 };
+
+useEffect(() => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  }
+}, []);
 
 export default function RootLayout({
   children,

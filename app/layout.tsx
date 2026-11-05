@@ -1,5 +1,3 @@
-// app/layout.tsx
-'use client';
 import "./globals.css";
 import { AudioPlayerProvider } from "@/context/AudioPlayerContext";
 import RadioPlayerDock from "@/components/darshan/RadioPlayerDock";
@@ -8,11 +6,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
-
 import TopBar from "@/components/Top-bar";
-import "./globals.css";
 import InstallAppBanner from "@/components/InstallAppBanner";
-import { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,12 +41,6 @@ export const metadata: Metadata = {
   },
 };
 
-useEffect(() => {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
-  }
-}, []);
-
 export default function RootLayout({
   children,
 }: {
@@ -69,16 +58,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col bg-[#FDFBF7] text-[#2D1609] antialiased`}
       >
         <AudioPlayerProvider>
-        <ServiceWorkerRegister />
-        <TopBar />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+          <ServiceWorkerRegister />
+          <TopBar />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
 
-        {/* Floating PWA Install Banner */}
-       
-        <InstallAppBanner />
-        <RadioPlayerDock />
+          {/* Floating PWA Install Banner */}
+          <InstallAppBanner />
+          <RadioPlayerDock />
         </AudioPlayerProvider>
       </body>
     </html>

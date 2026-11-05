@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 export default function ServiceWorkerRegister() {
   useEffect(() => {
-    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+    if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js").catch((err) => {
-        console.error("Service worker registration failed:", err);
+        console.warn("ServiceWorker registration failed: ", err);
       });
     }
   }, []);
 
-  return null; // Renders nothing to DOM, just handles browser lifecycle
+  return null;
 }
